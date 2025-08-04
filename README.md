@@ -148,7 +148,28 @@ npm run preview
 - Export as PDF for applications
 - Save HTML version for web portfolios
 
-## 🎨 Customization
+## � Language Support
+
+The CV Builder now includes comprehensive internationalization (i18n) support:
+
+### Supported Languages
+- **🇸🇪 Swedish (Svenska)** - Complete translation of all interface elements
+- **🇺🇸 English** - Default language with full feature support
+
+### Language Features
+- **Automatic Detection**: Browser language detection on first visit
+- **Manual Switching**: Toggle between languages with the language switcher in the header
+- **Persistent Setting**: Language preference saved in localStorage
+- **Complete Translation**: All forms, templates, tooltips, and help text translated
+- **Dynamic Content**: Form placeholders and validation messages in selected language
+
+### Using Language Switching
+1. Click the language flag in the top-right corner
+2. Select your preferred language (🇸🇪 Svenska or 🇺🇸 English)
+3. All interface elements update immediately
+4. Your preference is saved for future visits
+
+## �🎨 Customization
 
 ### Template Styling
 Each template uses different design approaches:
@@ -197,7 +218,35 @@ Templates use customizable color schemes defined in the CV context:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## � Recent Updates
+
+### v1.1.0 - Internationalization Update
+- ✅ Added complete Swedish language support
+- ✅ Implemented react-i18next for translation management
+- ✅ Added language switcher component with flag indicators
+- ✅ Translated all form components and templates
+- ✅ Added browser language detection
+- ✅ Fixed Skills form input focus issue for better UX
+
+### v1.0.0 - Initial Release
+- ✅ Core CV builder functionality
+- ✅ Three professional templates
+- ✅ PDF, HTML, and JSON export
+- ✅ Image upload and management
+- ✅ Responsive design
+- ✅ Data persistence with localStorage
+
+## 📋 Roadmap
+
+- [ ] Additional template designs
+- [ ] Drag and drop section reordering
+- [ ] More export formats (Word, LaTeX)
+- [ ] Print optimization
+- [ ] Template customization options
+- [ ] Additional language support
+- [ ] Cloud storage integration
+
+## �📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
