@@ -229,6 +229,27 @@ const swedishTranslations = {
     edit: 'Redigera',
     add: 'Lägg till',
     language: 'Språk'
+  },
+  
+  // Footer
+  footer: {
+    createdBy: 'Skapad av',
+    company: 'Utvecklingsföretag',
+    aboutProject: 'Om Projektet',
+    creatorDescription: 'Fullstack-utvecklare specialiserad på .NET-lösningar med över 3 års erfarenhet av att bygga robusta och skalbara applikationer.',
+    companyTagline: 'Scandinavian Precision Software Development',
+    companyDescription: 'Vi blandar nordisk minimalism med modern teknik för att leverera eleganta, effektiva och kraftfulla digitala lösningar för din verksamhet.',
+    projectDescription: 'En modern CV-byggare utvecklad med React och Vite. Stöder flera språk, PDF-export och professionella mallar för att skapa ATS-vänliga CV:n.',
+    portfolio: 'Portfolio',
+    contact: 'Kontakt',
+    visitWebsite: 'Besök Webbplats',
+    sourceCode: 'Källkod',
+    webDevelopment: 'Webbutveckling',
+    mobileDevelopment: 'Mobilappar',
+    ecommerce: 'E-handel',
+    allRightsReserved: 'Alla rättigheter förbehållna.',
+    madeWithLove: 'Gjord med kärlek',
+    inSweden: 'i Sverige'
   }
 }
 
@@ -448,6 +469,27 @@ const englishTranslations = {
     edit: 'Edit',
     add: 'Add',
     language: 'Language'
+  },
+  
+  // Footer
+  footer: {
+    createdBy: 'Created by',
+    company: 'Development Company',
+    aboutProject: 'About Project',
+    creatorDescription: 'Fullstack developer specialized in .NET solutions with over 3 years of experience building robust and scalable applications.',
+    companyTagline: 'Scandinavian Precision Software Development',
+    companyDescription: 'We blend Nordic minimalism with cutting-edge technology to deliver elegant, efficient, and powerful digital solutions for your business.',
+    projectDescription: 'A modern CV builder developed with React and Vite. Supports multiple languages, PDF export, and professional templates for creating ATS-friendly resumes.',
+    portfolio: 'Portfolio',
+    contact: 'Contact',
+    visitWebsite: 'Visit Website',
+    sourceCode: 'Source Code',
+    webDevelopment: 'Web Development',
+    mobileDevelopment: 'Mobile Apps',
+    ecommerce: 'E-commerce',
+    allRightsReserved: 'All rights reserved.',
+    madeWithLove: 'Made with love',
+    inSweden: 'in Sweden'
   }
 }
 

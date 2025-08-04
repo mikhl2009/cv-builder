@@ -1,0 +1,22 @@
+{
+  "name": "CV Builder - Prima Nordic Solution",
+  "short_name": "CV Builder",
+  "description": "Professional online CV builder tool for creating resumes in Swedish and English",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "business", "utilities"],
+  "lang": "sv",
+  "dir": "ltr"
+}

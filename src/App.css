@@ -10,10 +10,68 @@ body {
   color: #333;
 }
 
+/* Language-specific adjustments if needed */
+body.lang-en,
+body.lang-sv {
+  /* Ensure consistent behavior across languages */
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Language-specific layout adjustments */
+body.lang-en .cv-builder {
+  /* Force consistent grid for English */
+  grid-template-columns: 1fr 1fr !important;
+}
+
+body.lang-sv .cv-builder {
+  /* Force consistent grid for Swedish */
+  grid-template-columns: 1fr 1fr !important;
+}
+
+/* Force full width for header and footer on all languages */
+body.lang-en .header,
+body.lang-sv .header {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body.lang-en .footer,
+body.lang-sv .footer {
+  width: 100% !important;
+}
+
+body.lang-en .footer-content,
+body.lang-sv .footer-content {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+body.lang-en .footer-bottom-content,
+body.lang-sv .footer-bottom-content {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+/* Ensure text doesn't break layout */
+body.lang-en .header h1,
+body.lang-sv .header h1 {
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+body.lang-en .header p,
+body.lang-sv .header p {
+  word-wrap: break-word;
+}
+
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 /* Header Styles */
@@ -26,6 +84,11 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  /* Ensure consistent header behavior */
+  flex-shrink: 0;
+  /* Force full width */
+  max-width: none !important;
+  box-sizing: border-box;
 }
 
 .header h1 {
@@ -125,6 +188,11 @@ body {
   padding: 2rem;
   width: 100%;
   max-width: none;
+  min-height: calc(100vh - 120px);
+  /* Force layout recalculation */
+  contain: layout;
+  /* Smooth transitions */
+  transition: all 0.3s ease;
 }
 
 /* Sidebar Styles */
@@ -309,20 +377,37 @@ body {
   .cv-builder {
     gap: 3rem;
     padding: 3rem;
-
+    grid-template-columns: 1.2fr 0.8fr;
+    max-width: 1800px;
+    margin: 0 auto;
+    /* Force consistent layout regardless of content */
+    min-width: 0;
   }
   
   .header {
     padding: 1.5rem 3rem;
+    /* Ensure header spans full width */
+    box-sizing: border-box;
   }
   
   .sidebar {
     padding: 2rem;
+    /* Prevent overflow issues */
+    min-width: 0;
+    word-wrap: break-word;
   }
   
   .preview {
     padding: 2.5rem;
     max-width: 650px;
+  }
+  
+  /* Language-specific overrides for extra large screens */
+  body.lang-en .cv-builder,
+  body.lang-sv .cv-builder {
+    grid-template-columns: 1fr 1fr !important;
+    max-width: none !important;
+    margin: 0 !important;
   }
 }
 
@@ -334,14 +419,22 @@ body {
     grid-template-columns: 1.1fr 0.9fr;
     max-width: 1600px;
     margin: 0 auto;
+    min-width: 0;
   }
   
   .header {
     padding: 1.25rem 2.5rem;
+    box-sizing: border-box;
   }
   
   .preview {
     max-width: 620px;
+  }
+  
+  /* Language-specific overrides for large screens */
+  body.lang-en .cv-builder,
+  body.lang-sv .cv-builder {
+    grid-template-columns: 1fr 1fr !important;
   }
 }
 
@@ -598,6 +691,220 @@ body {
 
 .skill-tag .remove:hover {
   color: #ffcccb;
+}
+
+/* Footer Styles */
+.footer {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  margin-top: auto;
+  padding: 3rem 0 1rem 0;
+}
+
+.footer-content {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.footer-section {
+  padding: 1rem 0;
+}
+
+.footer-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.creator-info,
+.company-info,
+.project-info {
+  padding-left: 0.5rem;
+}
+
+.creator-info h4,
+.company-info h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #ecf0f1;
+}
+
+.creator-title {
+  color: #3498db;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.creator-description,
+.company-description,
+.project-description {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #bdc3c7;
+  font-size: 0.9rem;
+}
+
+.company-tagline {
+  color: #e74c3c;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.creator-links,
+.company-links,
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.creator-link,
+.company-link,
+.project-link {
+  color: #3498db;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.creator-link:hover,
+.company-link:hover,
+.project-link:hover {
+  background-color: #3498db;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.company-services,
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.service-tag,
+.tech-tag {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom-content {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+}
+
+.copyright strong {
+  color: #ecf0f1;
+}
+
+.made-with-love {
+  font-size: 0.9rem;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Footer Responsive Design */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .creator-links,
+  .company-links,
+  .project-links {
+    justify-content: center;
+  }
+  
+  .company-services,
+  .tech-stack {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2rem 0 1rem 0;
+  }
+  
+  .footer-title {
+    font-size: 1.1rem;
+  }
+  
+  .creator-info h4,
+  .company-info h4 {
+    font-size: 1.1rem;
+  }
+  
+  .creator-links,
+  .company-links,
+  .project-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .creator-link,
+  .company-link,
+  .project-link {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+  }
 }
 
 /* Loading and Error States */

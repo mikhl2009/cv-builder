@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cv-builder.primasolution.se/sitemap.xml
+
+# Crawl-delay for better performance
+Crawl-delay: 1
+
+# Allow access to important resources
+Allow: /assets/
+Allow: /src/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.json
+
+# Disallow any sensitive or private directories (none in this case)
