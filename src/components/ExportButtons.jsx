@@ -48,26 +48,19 @@ function ExportButtons() {
         filename: `${cv.personalInfo.fullName || 'CV'}.pdf`,
         image: { 
           type: 'jpeg', 
-          quality: 0.95 
+          quality: 0.98 
         },
         html2canvas: { 
           scale: 2, 
           useCORS: true,
           letterRendering: true,
           allowTaint: false,
-          backgroundColor: '#ffffff',
-          logging: false,
-          height: window.innerHeight,
-          width: window.innerWidth,
-          scrollX: 0,
-          scrollY: 0
+          backgroundColor: '#ffffff'
         },
         jsPDF: { 
           unit: 'in', 
           format: 'a4', 
-          orientation: 'portrait',
-          compress: true,
-          precision: 16
+          orientation: 'portrait'
         },
         pagebreak: {
           mode: ['avoid-all', 'css', 'legacy'],
