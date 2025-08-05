@@ -2,6 +2,7 @@ import React from 'react'
 import { Plus, X, Award } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
 import { useTranslation } from 'react-i18next'
+import MonthYearPicker from '../MonthYearPicker'
 
 function CertificationsForm() {
   const { cv, dispatch, actions } = useCV()
@@ -75,10 +76,10 @@ function CertificationsForm() {
 
             <div className="form-group">
               <label>{t('certifications.date')}</label>
-              <input
-                type="month"
+              <MonthYearPicker
                 value={cert.date}
-                onChange={(e) => updateCertification(cert.id, 'date', e.target.value)}
+                onChange={(value) => updateCertification(cert.id, 'date', value)}
+                placeholder={t('certifications.placeholders.date')}
               />
             </div>
 

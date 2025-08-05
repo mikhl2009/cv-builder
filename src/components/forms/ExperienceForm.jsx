@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, X, Briefcase } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
+import MonthYearPicker from '../MonthYearPicker'
 
 function ExperienceForm() {
   const { t } = useTranslation()
@@ -66,7 +67,7 @@ function ExperienceForm() {
                 type="text"
                 value={exp.jobTitle}
                 onChange={(e) => updateExperience(exp.id, 'jobTitle', e.target.value)}
-                placeholder={t('experience.jobTitlePlaceholder')}
+                placeholder={t('experience.jobTitle')}
               />
             </div>
 
@@ -76,7 +77,7 @@ function ExperienceForm() {
                 type="text"
                 value={exp.company}
                 onChange={(e) => updateExperience(exp.id, 'company', e.target.value)}
-                placeholder={t('experience.companyPlaceholder')}
+                placeholder={t('experience.company')}
               />
             </div>
 
@@ -86,26 +87,26 @@ function ExperienceForm() {
                 type="text"
                 value={exp.location}
                 onChange={(e) => updateExperience(exp.id, 'location', e.target.value)}
-                placeholder={t('experience.locationPlaceholder')}
+                placeholder={t('experience.location')}
               />
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="form-group">
                 <label>{t('experience.startDate')}</label>
-                <input
-                  type="month"
+                <MonthYearPicker
                   value={exp.startDate}
-                  onChange={(e) => updateExperience(exp.id, 'startDate', e.target.value)}
+                  onChange={(value) => updateExperience(exp.id, 'startDate', value)}
+                  placeholder={t('experience.placeholders.startDate')}
                 />
               </div>
 
               <div className="form-group">
                 <label>{t('experience.endDate')}</label>
-                <input
-                  type="month"
+                <MonthYearPicker
                   value={exp.endDate}
-                  onChange={(e) => updateExperience(exp.id, 'endDate', e.target.value)}
+                  onChange={(value) => updateExperience(exp.id, 'endDate', value)}
+                  placeholder={t('experience.placeholders.endDate')}
                   disabled={exp.current}
                 />
               </div>

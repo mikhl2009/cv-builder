@@ -94,7 +94,9 @@ const swedishTranslations = {
     placeholders: {
       jobTitle: 'Mjukvaruingenjör',
       company: 'Tech Company AB',
-      location: 'Stockholm, Sverige'
+      location: 'Stockholm, Sverige',
+      startDate: 'Välj startdatum',
+      endDate: 'Välj slutdatum'
     }
   },
   
@@ -116,7 +118,9 @@ const swedishTranslations = {
       degree: 'Kandidatexamen i Datavetenskap',
       institution: 'Kungliga Tekniska Högskolan',
       location: 'Stockholm, Sverige',
-      gpa: '4.2/5.0'
+      gpa: '4.2/5.0',
+      startDate: 'Välj startdatum',
+      endDate: 'Välj slutdatum'
     }
   },
   
@@ -160,7 +164,9 @@ const swedishTranslations = {
     placeholders: {
       name: 'E-handelswebbsida',
       technologies: 'React, Node.js, MongoDB, AWS',
-      url: 'https://github.com/användarnamn/projekt eller https://projekt-demo.se'
+      url: 'https://github.com/användarnamn/projekt eller https://projekt-demo.se',
+      startDate: 'Välj startdatum',
+      endDate: 'Välj slutdatum'
     },
     tips: {
       title: 'Projekttips:',
@@ -186,7 +192,8 @@ const swedishTranslations = {
     placeholders: {
       name: 'AWS Certified Solutions Architect',
       issuer: 'Amazon Web Services',
-      url: 'https://credly.com/badges/...'
+      url: 'https://credly.com/badges/...',
+      date: 'Välj datum'
     },
     tips: {
       title: 'Certifieringstips:',
@@ -342,7 +349,9 @@ const englishTranslations = {
     placeholders: {
       jobTitle: 'Software Engineer',
       company: 'Tech Company Inc.',
-      location: 'San Francisco, CA'
+      location: 'San Francisco, CA',
+      startDate: 'Select start date',
+      endDate: 'Select end date'
     }
   },
   
@@ -362,7 +371,9 @@ const englishTranslations = {
       degree: 'Bachelor of Science in Computer Science',
       institution: 'University of Technology',
       location: 'Boston, MA',
-      gpa: '3.8/4.0'
+      gpa: '3.8/4.0',
+      startDate: 'Select start date',
+      endDate: 'Select end date'
     }
   },
   
@@ -403,7 +414,9 @@ const englishTranslations = {
     placeholders: {
       name: 'E-commerce Website',
       technologies: 'React, Node.js, MongoDB, AWS',
-      url: 'https://github.com/username/project or https://project-demo.com'
+      url: 'https://github.com/username/project or https://project-demo.com',
+      startDate: 'Select start date',
+      endDate: 'Select end date'
     },
     tips: {
       title: 'Project Tips:',
@@ -426,7 +439,9 @@ const englishTranslations = {
     urlHelp: 'Link to credential verification or certificate',
     placeholders: {
       name: 'AWS Certified Solutions Architect',
-      issuer: 'Amazon Web Services'
+      issuer: 'Amazon Web Services',
+      url: 'https://credly.com/badges/...',
+      date: 'Select date'
     },
     tips: {
       title: 'Certification Tips:',

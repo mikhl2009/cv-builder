@@ -2,6 +2,7 @@ import React from 'react'
 import { Plus, X, GraduationCap } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
 import { useTranslation } from 'react-i18next'
+import MonthYearPicker from '../MonthYearPicker'
 
 function EducationForm() {
   const { cv, dispatch, actions } = useCV()
@@ -93,19 +94,19 @@ function EducationForm() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="form-group">
                 <label>{t('education.startDate')}</label>
-                <input
-                  type="month"
+                <MonthYearPicker
                   value={edu.startDate}
-                  onChange={(e) => updateEducation(edu.id, 'startDate', e.target.value)}
+                  onChange={(value) => updateEducation(edu.id, 'startDate', value)}
+                  placeholder={t('education.placeholders.startDate')}
                 />
               </div>
 
               <div className="form-group">
                 <label>{t('education.endDate')}</label>
-                <input
-                  type="month"
+                <MonthYearPicker
                   value={edu.endDate}
-                  onChange={(e) => updateEducation(edu.id, 'endDate', e.target.value)}
+                  onChange={(value) => updateEducation(edu.id, 'endDate', value)}
+                  placeholder={t('education.placeholders.endDate')}
                 />
               </div>
             </div>

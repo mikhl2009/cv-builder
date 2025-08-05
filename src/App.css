@@ -18,7 +18,80 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  color: #333 !important; /* Dark text for visibility */
+  background-color: #fff; /* White background */
+}
 
+/* Fix placeholder text color */
+input::placeholder,
+textarea::placeholder {
+  color: #666 !important; /* Gray placeholder text */
+  opacity: 1; /* Ensure full opacity */
+}
+
+/* Browser-specific placeholder fixes */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #666 !important;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #666 !important;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #666 !important;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="number"],
+input[type="search"],
+input[type="password"],
+textarea,
+select {
+  color: #333 !important; /* Dark text for visibility */
+  background-color: #fff; /* White background */
+}
+
+/* Fix placeholder text color for ALL input types */
+input::placeholder,
+textarea::placeholder {
+  color: #666 !important; /* Gray placeholder text */
+  opacity: 1; /* Ensure full opacity */
+}
+
+/* Browser-specific placeholder fixes */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #666 !important;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #666 !important;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #666 !important;
+}
 /* Language-specific text adjustments only */
 body.lang-en {
   font-size: 16px;
@@ -227,7 +300,18 @@ body.lang-sv {
   font-size: 1rem;
 }
 
-.form-group input,
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="url"],
+.form-group input[type="date"],
+.form-group input[type="month"],
+.form-group input[type="week"],
+.form-group input[type="time"],
+.form-group input[type="datetime-local"],
+.form-group input[type="number"],
+.form-group input[type="search"],
+.form-group input[type="password"],
 .form-group textarea,
 .form-group select {
   width: 100%;
@@ -237,10 +321,11 @@ body.lang-sv {
   font-size: 1rem;
   font-family: inherit;
   background: white;
+  color: #333 !important;
   transition: all 0.2s;
   min-height: 44px;
   box-sizing: border-box;
-  -webkit-appearance: none;
+  -webkit-appearance: none;  /* Safe for these input types */
   appearance: none;
 }
 
@@ -937,6 +1022,189 @@ body.lang-sv {
   .image-preview {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+  }
+}
+
+/* Month Year Picker Styles */
+.month-year-picker {
+  position: relative;
+  width: 100%;
+}
+
+.month-year-input {
+  width: 100% !important;
+  padding: 1rem !important;
+  border: 2px solid #e1e8ed !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  font-family: inherit !important;
+  background: white !important;
+  color: #333 !important;
+  transition: all 0.2s !important;
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.month-year-input:focus {
+  outline: 3px solid #667eea !important;
+  outline-offset: 2px !important;
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+.month-year-input:disabled {
+  background-color: #f8f9fa !important;
+  color: #6c757d !important;
+  cursor: not-allowed !important;
+}
+
+.month-year-input::placeholder {
+  color: #666 !important;
+  opacity: 1 !important;
+}
+
+/* DatePicker Popup Styles */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.month-year-popper {
+  z-index: 9999 !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.month-year-calendar {
+  border: 2px solid #667eea !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  background: white !important;
+  font-family: inherit !important;
+}
+
+.react-datepicker__header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-bottom: none !important;
+  border-radius: 10px 10px 0 0 !important;
+  color: white !important;
+  padding: 1rem !important;
+}
+
+.react-datepicker__current-month {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.react-datepicker__navigation {
+  top: 1.2rem !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.react-datepicker__navigation:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: white !important;
+  border-width: 2px 2px 0 0 !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.react-datepicker__month-container {
+  padding: 1rem !important;
+}
+
+.react-datepicker__month {
+  margin: 0 !important;
+}
+
+.react-datepicker__month-text {
+  display: inline-block !important;
+  width: 4rem !important;
+  height: 3rem !important;
+  line-height: 3rem !important;
+  text-align: center !important;
+  margin: 0.25rem !important;
+  border-radius: 8px !important;
+  color: #333 !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.react-datepicker__month-text:hover {
+  background: #f0f4ff !important;
+  color: #667eea !important;
+}
+
+.react-datepicker__month-text--selected {
+  background: #667eea !important;
+  color: white !important;
+}
+
+.react-datepicker__month-text--selected:hover {
+  background: #5a6fd8 !important;
+}
+
+.react-datepicker__month-text--disabled {
+  color: #ccc !important;
+  cursor: not-allowed !important;
+}
+
+.react-datepicker__month-text--disabled:hover {
+  background: transparent !important;
+  color: #ccc !important;
+}
+
+/* Mobile optimizations for DatePicker */
+@media (max-width: 768px) {
+  .month-year-calendar {
+    font-size: 0.9rem !important;
+  }
+  
+  .react-datepicker__month-text {
+    width: 3.5rem !important;
+    height: 2.5rem !important;
+    line-height: 2.5rem !important;
+    margin: 0.2rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .react-datepicker__navigation {
+    width: 28px !important;
+    height: 28px !important;
+    top: 1rem !important;
+  }
+  
+  .react-datepicker__navigation-icon::before {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  
+  .month-year-input {
+    padding: 1rem !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Touch improvements for mobile */
+@media (max-width: 768px) {
+  .react-datepicker__month-text {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    touch-action: manipulation !important;
   }
 }
 @media (min-width: 1400px) {

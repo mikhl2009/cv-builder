@@ -2,6 +2,7 @@ import React from 'react'
 import { Plus, X, FolderOpen } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
 import { useTranslation } from 'react-i18next'
+import MonthYearPicker from '../MonthYearPicker'
 
 function ProjectsForm() {
   const { cv, dispatch, actions } = useCV()
@@ -105,19 +106,19 @@ function ProjectsForm() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="form-group">
                 <label>{t('projects.startDate')}</label>
-                <input
-                  type="month"
+                <MonthYearPicker
                   value={project.startDate}
-                  onChange={(e) => updateProject(project.id, 'startDate', e.target.value)}
+                  onChange={(value) => updateProject(project.id, 'startDate', value)}
+                  placeholder={t('projects.placeholders.startDate')}
                 />
               </div>
 
               <div className="form-group">
                 <label>{t('projects.endDate')}</label>
-                <input
-                  type="month"
+                <MonthYearPicker
                   value={project.endDate}
-                  onChange={(e) => updateProject(project.id, 'endDate', e.target.value)}
+                  onChange={(value) => updateProject(project.id, 'endDate', value)}
+                  placeholder={t('projects.placeholders.endDate')}
                 />
               </div>
             </div>
