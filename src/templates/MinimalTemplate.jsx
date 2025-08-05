@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Linkedin, Github } from 'lucide-react'
 
 function MinimalTemplate({ cv }) {
   const { t } = useTranslation()
@@ -62,9 +63,27 @@ function MinimalTemplate({ cv }) {
           {cv.personalInfo.email && <div>{cv.personalInfo.email}</div>}
           {cv.personalInfo.phone && <div>{cv.personalInfo.phone}</div>}
           {cv.personalInfo.location && <div>{cv.personalInfo.location}</div>}
-          {cv.personalInfo.website && <div>{cv.personalInfo.website}</div>}
-          {cv.personalInfo.linkedin && <div>LinkedIn Profile</div>}
-          {cv.personalInfo.github && <div>GitHub Profile</div>}
+          {cv.personalInfo.website && (
+            <div>
+              <a href={cv.personalInfo.website} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                {cv.personalInfo.website}
+              </a>
+            </div>
+          )}
+          {cv.personalInfo.linkedin && (
+            <div style={{ display: 'inline-flex', alignItems: 'center', marginRight: '1rem' }}>
+              <a href={cv.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                <Linkedin size={16} />
+              </a>
+            </div>
+          )}
+          {cv.personalInfo.github && (
+            <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <a href={cv.personalInfo.github} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                <Github size={16} />
+              </a>
+            </div>
+          )}
         </div>
       </header>
 

@@ -92,19 +92,23 @@ function ModernTemplate({ cv }) {
               {cv.personalInfo.website && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Globe size={16} />
-                  {cv.personalInfo.website}
+                  <a href={cv.personalInfo.website} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    {cv.personalInfo.website}
+                  </a>
                 </div>
               )}
               {cv.personalInfo.linkedin && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Linkedin size={16} />
-                  LinkedIn
+                  <a href={cv.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                    <Linkedin size={16} />
+                  </a>
                 </div>
               )}
               {cv.personalInfo.github && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Github size={16} />
-                  GitHub
+                  <a href={cv.personalInfo.github} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                    <Github size={16} />
+                  </a>
                 </div>
               )}
             </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Linkedin, Github, Globe } from 'lucide-react'
 
 function ClassicTemplate({ cv }) {
   const { t } = useTranslation()
@@ -52,8 +53,22 @@ function ClassicTemplate({ cv }) {
         <div style={{ fontSize: '1rem', margin: '0.5rem 0' }}>
           {[cv.personalInfo.email, cv.personalInfo.phone, cv.personalInfo.location].filter(Boolean).join(' • ')}
         </div>
-        <div style={{ fontSize: '1rem' }}>
-          {[cv.personalInfo.website, cv.personalInfo.linkedin, cv.personalInfo.github].filter(Boolean).join(' • ')}
+        <div style={{ fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          {cv.personalInfo.website && (
+            <a href={cv.personalInfo.website} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Globe size={16} />
+            </a>
+          )}
+          {cv.personalInfo.linkedin && (
+            <a href={cv.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Linkedin size={16} />
+            </a>
+          )}
+          {cv.personalInfo.github && (
+            <a href={cv.personalInfo.github} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Github size={16} />
+            </a>
+          )}
         </div>
       </header>
 
