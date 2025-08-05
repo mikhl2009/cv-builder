@@ -1207,6 +1207,77 @@ body.lang-sv {
     touch-action: manipulation !important;
   }
 }
+
+/* PDF Export optimizations */
+@media print {
+  .cv-preview {
+    font-size: 12pt !important;
+    line-height: 1.4 !important;
+    color: #000 !important;
+    background: white !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  .cv-preview * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  .cv-preview section {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .cv-preview h1, 
+  .cv-preview h2, 
+  .cv-preview h3 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  .cv-preview .experience-item,
+  .cv-preview .education-item,
+  .cv-preview .project-item,
+  .cv-preview .certification-item {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 0.8rem !important;
+  }
+  
+  .cv-preview .page-break-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  .cv-preview .page-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+  
+  .cv-preview .page-break-after {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  
+  /* Ensure links are visible in PDF */
+  .cv-preview a {
+    color: #0066cc !important;
+    text-decoration: underline !important;
+  }
+  
+  /* Make sure colors are preserved */
+  .cv-preview [style*="color"] {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
 @media (min-width: 1400px) {
   .cv-builder {
     max-width: 1600px;

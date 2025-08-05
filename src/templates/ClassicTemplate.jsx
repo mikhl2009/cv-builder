@@ -272,6 +272,13 @@ function ClassicTemplate({ cv }) {
                 <p style={{ margin: '0.2rem 0', fontStyle: 'italic' }}>
                   {cert.issuer}
                 </p>
+                {cert.url && (
+                  <p style={{ margin: '0.2rem 0', fontSize: '0.9rem' }}>
+                    <a href={cert.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'underline' }}>
+                      {cert.url}
+                    </a>
+                  </p>
+                )}
               </div>
             )
           ))}

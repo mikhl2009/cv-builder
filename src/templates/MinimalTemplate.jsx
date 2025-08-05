@@ -400,6 +400,19 @@ function MinimalTemplate({ cv }) {
                     }}>
                       {cert.issuer}
                     </p>
+                    {cert.url && (
+                      <p style={{ 
+                        margin: '0.2rem 0 0 0', 
+                        fontSize: '0.85rem'
+                      }}>
+                        <a href={cert.url} target="_blank" rel="noopener noreferrer" style={{ 
+                          color: '#3498db', 
+                          textDecoration: 'none' 
+                        }}>
+                          {cert.url}
+                        </a>
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

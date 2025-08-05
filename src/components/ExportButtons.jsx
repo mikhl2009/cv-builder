@@ -14,23 +14,73 @@ function ExportButtons() {
     setIsExporting(true)
     try {
       const element = document.getElementById('cv-preview')
+      
+      // Add page break styles temporarily
+      const style = document.createElement('style')
+      style.textContent = `
+        @media print {
+          .cv-preview {
+            page-break-inside: avoid;
+          }
+          .cv-preview section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
+          .cv-preview h1, .cv-preview h2, .cv-preview h3 {
+            page-break-after: avoid;
+            break-after: avoid;
+          }
+          .cv-preview > div {
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
+          .cv-preview .dynamic-item {
+            page-break-inside: avoid;
+            break-inside: avoid;
+            margin-bottom: 0.5rem;
+          }
+        }
+      `
+      document.head.appendChild(style)
+      
       const options = {
-        margin: 0.5,
+        margin: [0.5, 0.5, 0.5, 0.5],
         filename: `${cv.personalInfo.fullName || 'CV'}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { 
+          type: 'jpeg', 
+          quality: 0.95 
+        },
         html2canvas: { 
           scale: 2, 
           useCORS: true,
-          letterRendering: true
+          letterRendering: true,
+          allowTaint: false,
+          backgroundColor: '#ffffff',
+          logging: false,
+          height: window.innerHeight,
+          width: window.innerWidth,
+          scrollX: 0,
+          scrollY: 0
         },
         jsPDF: { 
           unit: 'in', 
-          format: 'letter', 
-          orientation: 'portrait' 
+          format: 'a4', 
+          orientation: 'portrait',
+          compress: true,
+          precision: 16
+        },
+        pagebreak: {
+          mode: ['avoid-all', 'css', 'legacy'],
+          before: '.page-break-before',
+          after: '.page-break-after',
+          avoid: '.page-break-avoid'
         }
       }
       
       await html2pdf().set(options).from(element).save()
+      
+      // Remove temporary styles
+      document.head.removeChild(style)
     } catch (error) {
       console.error('Error exporting PDF:', error)
       alert('Error exporting PDF. Please try again.')
