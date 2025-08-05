@@ -98,7 +98,7 @@ function MinimalTemplate({ cv }) {
           </h2>
           {cv.experience.map((exp, index) => (
             exp.jobTitle && (
-              <div key={exp.id} style={{ 
+              <div key={exp.id} className="experience-item avoid" style={{ 
                 marginBottom: index === cv.experience.length - 1 ? 0 : '2.5rem',
                 position: 'relative'
               }}>
@@ -159,7 +159,7 @@ function MinimalTemplate({ cv }) {
           </h2>
           {cv.education.map((edu, index) => (
             edu.degree && (
-              <div key={edu.id} style={{ 
+              <div key={edu.id} className="education-item avoid" style={{ 
                 marginBottom: index === cv.education.length - 1 ? 0 : '2rem',
               }}>
                 <div style={{ 
@@ -300,7 +300,7 @@ function MinimalTemplate({ cv }) {
           </h2>
           {cv.projects.map((project, index) => (
             project.name && (
-              <div key={project.id} style={{ 
+              <div key={project.id} className="project-item avoid" style={{ 
                 marginBottom: index === cv.projects.length - 1 ? 0 : '2rem',
               }}>
                 <div style={{ 
@@ -372,7 +372,7 @@ function MinimalTemplate({ cv }) {
           </h2>
           {cv.certifications.map((cert, index) => (
             cert.name && (
-              <div key={cert.id} style={{ 
+              <div key={cert.id} className="certification-item avoid" style={{ 
                 marginBottom: index === cv.certifications.length - 1 ? 0 : '1.5rem',
               }}>
                 <div style={{ 

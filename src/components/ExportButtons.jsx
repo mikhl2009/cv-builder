@@ -15,36 +15,46 @@ function ExportButtons() {
     try {
       const element = document.getElementById('cv-preview')
       
+      // Store original styles for restoration
+      const originalOverflow = element.style.overflow
+      const originalHeight = element.style.height
+      
+      // Temporarily ensure full content is visible for capture
+      element.style.overflow = 'visible'
+      element.style.height = 'auto'
+      
       // Add page break styles temporarily
       const style = document.createElement('style')
       style.textContent = `
-        @media print {
-          .cv-preview {
-            page-break-inside: avoid;
-          }
-          .cv-preview section {
-            page-break-inside: avoid;
-            break-inside: avoid;
-          }
-          .cv-preview h1, .cv-preview h2, .cv-preview h3 {
-            page-break-after: avoid;
-            break-after: avoid;
-          }
-          .cv-preview > div {
-            page-break-inside: avoid;
-            break-inside: avoid;
-          }
-          .cv-preview .dynamic-item {
-            page-break-inside: avoid;
-            break-inside: avoid;
-            margin-bottom: 0.5rem;
-          }
+        .cv-preview {
+          overflow: visible !important;
+          height: auto !important;
+        }
+        .avoid {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+        .cv-preview section {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+        .cv-preview h1, .cv-preview h2, .cv-preview h3 {
+          page-break-after: avoid;
+          break-after: avoid;
+        }
+        .cv-preview .experience-item,
+        .cv-preview .education-item,
+        .cv-preview .project-item,
+        .cv-preview .certification-item {
+          page-break-inside: avoid;
+          break-inside: avoid;
+          margin-bottom: 0.5rem;
         }
       `
       document.head.appendChild(style)
       
       const options = {
-        margin: [0.5, 0.5, 0.5, 0.5],
+        margin: 0.5,
         filename: `${cv.personalInfo.fullName || 'CV'}.pdf`,
         image: { 
           type: 'jpeg', 
@@ -63,14 +73,16 @@ function ExportButtons() {
           orientation: 'portrait'
         },
         pagebreak: {
-          mode: ['avoid-all', 'css', 'legacy'],
-          before: '.page-break-before',
-          after: '.page-break-after',
-          avoid: '.page-break-avoid'
+          mode: 'css',
+          avoid: '.avoid'
         }
       }
       
       await html2pdf().set(options).from(element).save()
+      
+      // Restore original styles
+      element.style.overflow = originalOverflow
+      element.style.height = originalHeight
       
       // Remove temporary styles
       document.head.removeChild(style)

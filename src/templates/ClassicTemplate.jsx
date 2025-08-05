@@ -89,7 +89,7 @@ function ClassicTemplate({ cv }) {
           </h2>
           {cv.experience.map((exp) => (
             exp.jobTitle && (
-              <div key={exp.id} style={{ marginBottom: '1.2rem' }}>
+              <div key={exp.id} className="experience-item avoid" style={{ marginBottom: '1.2rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 'bold' }}>
                     {exp.jobTitle} - {exp.company}
@@ -133,7 +133,7 @@ function ClassicTemplate({ cv }) {
           </h2>
           {cv.education.map((edu) => (
             edu.degree && (
-              <div key={edu.id} style={{ marginBottom: '1rem' }}>
+              <div key={edu.id} className="education-item avoid" style={{ marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 'bold' }}>
                     {edu.degree}
@@ -211,7 +211,7 @@ function ClassicTemplate({ cv }) {
           </h2>
           {cv.projects.map((project) => (
             project.name && (
-              <div key={project.id} style={{ marginBottom: '1rem' }}>
+              <div key={project.id} className="project-item avoid" style={{ marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 'bold' }}>
                     {project.name}
@@ -260,7 +260,7 @@ function ClassicTemplate({ cv }) {
           </h2>
           {cv.certifications.map((cert) => (
             cert.name && (
-              <div key={cert.id} style={{ marginBottom: '0.8rem' }}>
+              <div key={cert.id} className="certification-item avoid" style={{ marginBottom: '0.8rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                   <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 'bold' }}>
                     {cert.name}

@@ -140,7 +140,7 @@ function ModernTemplate({ cv }) {
           </h2>
           {cv.experience.map((exp) => (
             exp.jobTitle && (
-              <div key={exp.id} className="experience-item page-break-avoid" style={{ marginBottom: '1.5rem' }}>
+              <div key={exp.id} className="experience-item avoid" style={{ marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
                   <div>
                     <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: '600' }}>{exp.jobTitle}</h3>
@@ -186,7 +186,7 @@ function ModernTemplate({ cv }) {
           </h2>
           {cv.education.map((edu) => (
             edu.degree && (
-              <div key={edu.id} className="education-item page-break-avoid" style={{ marginBottom: '1.5rem' }}>
+              <div key={edu.id} className="education-item avoid" style={{ marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
                   <div>
                     <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600' }}>{edu.degree}</h3>
@@ -306,7 +306,7 @@ function ModernTemplate({ cv }) {
           </h2>
           {cv.projects.map((project) => (
             project.name && (
-              <div key={project.id} className="project-item page-break-avoid" style={{ marginBottom: '1.5rem' }}>
+              <div key={project.id} className="project-item avoid" style={{ marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
                   <div>
                     <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600' }}>{project.name}</h3>
@@ -359,7 +359,7 @@ function ModernTemplate({ cv }) {
           </h2>
           {cv.certifications.map((cert) => (
             cert.name && (
-              <div key={cert.id} className="certification-item page-break-avoid" style={{ marginBottom: '1rem' }}>
+              <div key={cert.id} className="certification-item avoid" style={{ marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600' }}>{cert.name}</h3>
