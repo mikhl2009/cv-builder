@@ -211,7 +211,7 @@ Templates use customizable color schemes defined in the CV context:
 - **JSON**: Raw data for backup and migration
 
 ## 🤝 Contributing
-
+Buy me a coffe: https://buymeacoffee.com/kyofmlgguw/professional-cv-builder
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
