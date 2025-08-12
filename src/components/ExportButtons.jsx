@@ -4,6 +4,7 @@ import { Download, FileText, File } from 'lucide-react'
 import { saveAs } from 'file-saver'
 import html2pdf from 'html2pdf.js'
 import { useCV } from '../context/CVContext'
+import ATSCompatiblePDFGenerator from './ATSCompatiblePDFGenerator'
 
 function ExportButtons() {
   const { t } = useTranslation()
@@ -93,6 +94,21 @@ function ExportButtons() {
     setIsExporting(false)
   }
 
+  // NEW: ATS-Compatible PDF Export
+  const exportToATSPDF = async () => {
+    setIsExporting(true)
+    try {
+      const pdfGenerator = new ATSCompatiblePDFGenerator()
+      const doc = pdfGenerator.generatePDF(cv)
+      const filename = `${cv.personalInfo.fullName || 'CV'}_ATS.pdf`
+      doc.save(filename)
+    } catch (error) {
+      console.error('Error exporting ATS PDF:', error)
+      alert('Error exporting ATS-compatible PDF. Please try again.')
+    }
+    setIsExporting(false)
+  }
+
   const exportToHTML = () => {
     const element = document.getElementById('cv-preview')
     const htmlContent = `
@@ -133,7 +149,16 @@ function ExportButtons() {
         disabled={isExporting}
       >
         <Download size={16} />
-        {isExporting ? t('buttons.exporting') : t('buttons.exportPDF')}
+        {isExporting ? t('buttons.exporting') : t('buttons.exportPDF')} (Visuell)
+      </button>
+      
+      <button 
+        className="btn btn-success" 
+        onClick={exportToATSPDF}
+        disabled={isExporting}
+      >
+        <FileText size={16} />
+        {isExporting ? 'Skapar ATS PDF...' : 'ATS-kompatibel PDF'}
       </button>
       
       <button 
