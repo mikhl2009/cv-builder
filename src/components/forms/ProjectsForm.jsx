@@ -3,6 +3,7 @@ import { Plus, X, FolderOpen } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
 import { useTranslation } from 'react-i18next'
 import MonthYearPicker from '../MonthYearPicker'
+import RichTextEditor from '../RichTextEditor'
 
 function ProjectsForm() {
   const { cv, dispatch, actions } = useCV()
@@ -73,11 +74,10 @@ function ProjectsForm() {
 
             <div className="form-group">
               <label>{t('projects.description')}</label>
-              <textarea
+              <RichTextEditor
                 value={project.description}
-                onChange={(e) => updateProject(project.id, 'description', e.target.value)}
+                onChange={(value) => updateProject(project.id, 'description', value)}
                 placeholder={t('projects.descriptionPlaceholder')}
-                rows={4}
               />
               <small>{t('projects.descriptionHelp')}</small>
             </div>

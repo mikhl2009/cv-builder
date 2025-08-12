@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Linkedin, Github } from 'lucide-react'
+import RichTextDisplay from '../components/RichTextDisplay'
 
 function MinimalTemplate({ cv }) {
   const { t } = useTranslation()
@@ -90,15 +91,16 @@ function MinimalTemplate({ cv }) {
       {/* Summary Section */}
       {cv.personalInfo.summary && (
         <section style={{ marginBottom: '3rem' }}>
-          <p style={{ 
-            fontSize: '1.1rem', 
-            lineHeight: 1.7,
-            color: '#34495e',
-            fontStyle: 'italic',
-            textAlign: 'justify'
-          }}>
-            {cv.personalInfo.summary}
-          </p>
+          <RichTextDisplay 
+            content={cv.personalInfo.summary}
+            style={{
+              fontSize: '1.1rem', 
+              lineHeight: 1.7,
+              color: '#34495e',
+              fontStyle: 'italic',
+              textAlign: 'justify'
+            }}
+          />
         </section>
       )}
 
@@ -147,13 +149,13 @@ function MinimalTemplate({ cv }) {
                       {exp.company}{exp.location && ` • ${exp.location}`}
                     </p>
                     {exp.description && (
-                      <div style={{ 
-                        fontSize: '0.95rem', 
-                        color: '#2c3e50',
-                        whiteSpace: 'pre-line'
-                      }}>
-                        {exp.description}
-                      </div>
+                      <RichTextDisplay 
+                        content={exp.description}
+                        style={{ 
+                          fontSize: '0.95rem', 
+                          color: '#2c3e50'
+                        }}
+                      />
                     )}
                   </div>
                 </div>
@@ -215,13 +217,13 @@ function MinimalTemplate({ cv }) {
                       </p>
                     )}
                     {edu.description && (
-                      <div style={{ 
-                        fontSize: '0.9rem', 
-                        color: '#2c3e50',
-                        whiteSpace: 'pre-line'
-                      }}>
-                        {edu.description}
-                      </div>
+                      <RichTextDisplay 
+                        content={edu.description}
+                        style={{ 
+                          fontSize: '0.9rem', 
+                          color: '#2c3e50'
+                        }}
+                      />
                     )}
                   </div>
                 </div>
@@ -350,14 +352,14 @@ function MinimalTemplate({ cv }) {
                       </p>
                     )}
                     {project.description && (
-                      <div style={{ 
-                        fontSize: '0.9rem', 
-                        color: '#2c3e50',
-                        marginBottom: '0.5rem',
-                        whiteSpace: 'pre-line'
-                      }}>
-                        {project.description}
-                      </div>
+                      <RichTextDisplay 
+                        content={project.description}
+                        style={{ 
+                          fontSize: '0.9rem', 
+                          color: '#2c3e50',
+                          marginBottom: '0.5rem'
+                        }}
+                      />
                     )}
                     {project.url && (
                       <p style={{ 

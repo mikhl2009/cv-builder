@@ -1331,3 +1331,109 @@ body.lang-sv {
     overflow-y: auto;
   }
 }
+
+/* Rich Text Display Styles for CV Templates */
+.cv-preview h1,
+.cv-preview h2, 
+.cv-preview h3, 
+.cv-preview h4, 
+.cv-preview h5, 
+.cv-preview h6 {
+  margin: 0.75em 0 0.5em 0;
+  font-weight: 600;
+}
+
+.cv-preview h1:first-child,
+.cv-preview h2:first-child,
+.cv-preview h3:first-child,
+.cv-preview h4:first-child,
+.cv-preview h5:first-child,
+.cv-preview h6:first-child {
+  margin-top: 0;
+}
+
+.cv-preview p {
+  margin: 0.5em 0;
+}
+
+.cv-preview p:first-child {
+  margin-top: 0;
+}
+
+.cv-preview p:last-child {
+  margin-bottom: 0;
+}
+
+.cv-preview ul,
+.cv-preview ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.cv-preview ul:first-child,
+.cv-preview ol:first-child {
+  margin-top: 0;
+}
+
+.cv-preview ul:last-child,
+.cv-preview ol:last-child {
+  margin-bottom: 0;
+}
+
+.cv-preview li {
+  margin: 0.25em 0;
+}
+
+.cv-preview strong {
+  font-weight: 600;
+}
+
+.cv-preview em {
+  font-style: italic;
+}
+
+.cv-preview s {
+  text-decoration: line-through;
+}
+
+.cv-preview ul li {
+  list-style-type: disc;
+}
+
+.cv-preview ol li {
+  list-style-type: decimal;
+}
+
+/* Ensure proper spacing between rich text elements and avoid double spacing */
+.cv-preview div > p:only-child {
+  margin: 0;
+}
+
+.cv-preview div > ul:only-child,
+.cv-preview div > ol:only-child {
+  margin: 0;
+}
+
+/* Print-specific rich text styles */
+@media print {
+  .cv-preview h1,
+  .cv-preview h2, 
+  .cv-preview h3, 
+  .cv-preview h4, 
+  .cv-preview h5, 
+  .cv-preview h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  
+  .cv-preview ul,
+  .cv-preview ol {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .cv-preview li {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Camera, Upload } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
+import RichTextEditor from '../RichTextEditor'
 
 function PersonalInfoForm() {
   const { t } = useTranslation()
@@ -141,11 +142,10 @@ function PersonalInfoForm() {
 
       <div className="form-group">
         <label>{t('personalInfo.summary')}</label>
-        <textarea
+        <RichTextEditor
           value={cv.personalInfo.summary}
-          onChange={(e) => handleInputChange('summary', e.target.value)}
+          onChange={(value) => handleInputChange('summary', value)}
           placeholder={t('personalInfo.summaryPlaceholder')}
-          rows={4}
         />
       </div>
     </div>

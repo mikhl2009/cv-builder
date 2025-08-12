@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Plus, X, Briefcase } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
 import MonthYearPicker from '../MonthYearPicker'
+import RichTextEditor from '../RichTextEditor'
 
 function ExperienceForm() {
   const { t } = useTranslation()
@@ -130,11 +131,10 @@ function ExperienceForm() {
 
             <div className="form-group">
               <label>{t('experience.description')}</label>
-              <textarea
+              <RichTextEditor
                 value={exp.description}
-                onChange={(e) => updateExperience(exp.id, 'description', e.target.value)}
+                onChange={(value) => updateExperience(exp.id, 'description', value)}
                 placeholder={t('experience.descriptionPlaceholder')}
-                rows={5}
               />
               <small>{t('experience.descriptionHelp')}</small>
             </div>

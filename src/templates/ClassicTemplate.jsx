@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Linkedin, Github, Globe } from 'lucide-react'
+import RichTextDisplay from '../components/RichTextDisplay'
 
 function ClassicTemplate({ cv }) {
   const { t } = useTranslation()
@@ -85,7 +86,10 @@ function ClassicTemplate({ cv }) {
           }}>
             {t('cvSections.personalSummary')}
           </h2>
-          <p style={{ fontSize: '1rem', textAlign: 'justify' }}>{cv.personalInfo.summary}</p>
+          <RichTextDisplay 
+            content={cv.personalInfo.summary}
+            style={{ fontSize: '1rem', textAlign: 'justify' }}
+          />
         </section>
       )}
 
@@ -119,13 +123,13 @@ function ClassicTemplate({ cv }) {
                   </p>
                 )}
                 {exp.description && (
-                  <div style={{ 
-                    fontSize: '0.95rem', 
-                    marginTop: '0.5rem',
-                    whiteSpace: 'pre-line'
-                  }}>
-                    {exp.description}
-                  </div>
+                  <RichTextDisplay 
+                    content={exp.description}
+                    style={{ 
+                      fontSize: '0.95rem', 
+                      marginTop: '0.5rem'
+                    }}
+                  />
                 )}
               </div>
             )
@@ -166,13 +170,13 @@ function ClassicTemplate({ cv }) {
                   </p>
                 )}
                 {edu.description && (
-                  <div style={{ 
-                    fontSize: '0.9rem', 
-                    marginTop: '0.3rem',
-                    whiteSpace: 'pre-line'
-                  }}>
-                    {edu.description}
-                  </div>
+                  <RichTextDisplay 
+                    content={edu.description}
+                    style={{ 
+                      fontSize: '0.9rem', 
+                      marginTop: '0.3rem'
+                    }}
+                  />
                 )}
               </div>
             )
@@ -241,13 +245,13 @@ function ClassicTemplate({ cv }) {
                   </p>
                 )}
                 {project.description && (
-                  <div style={{ 
-                    fontSize: '0.9rem', 
-                    marginTop: '0.3rem',
-                    whiteSpace: 'pre-line'
-                  }}>
-                    {project.description}
-                  </div>
+                  <RichTextDisplay 
+                    content={project.description}
+                    style={{ 
+                      fontSize: '0.9rem', 
+                      marginTop: '0.3rem'
+                    }}
+                  />
                 )}
                 {project.url && (
                   <p style={{ margin: '0.2rem 0', fontSize: '0.9rem' }}>

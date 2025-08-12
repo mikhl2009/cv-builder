@@ -3,6 +3,7 @@ import { Plus, X, GraduationCap } from 'lucide-react'
 import { useCV } from '../../context/CVContext'
 import { useTranslation } from 'react-i18next'
 import MonthYearPicker from '../MonthYearPicker'
+import RichTextEditor from '../RichTextEditor'
 
 function EducationForm() {
   const { cv, dispatch, actions } = useCV()
@@ -123,11 +124,10 @@ function EducationForm() {
 
             <div className="form-group">
               <label>{t('education.description')}</label>
-              <textarea
+              <RichTextEditor
                 value={edu.description}
-                onChange={(e) => updateEducation(edu.id, 'description', e.target.value)}
+                onChange={(value) => updateEducation(edu.id, 'description', value)}
                 placeholder={t('education.descriptionPlaceholder')}
-                rows={4}
               />
               <small>{t('education.descriptionHelp')}</small>
             </div>

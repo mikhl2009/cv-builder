@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Mail, Phone, MapPin, Globe, Linkedin, Github } from 'lucide-react'
+import RichTextDisplay from '../components/RichTextDisplay'
 
 function ModernTemplate({ cv }) {
   const { t } = useTranslation()
@@ -127,7 +128,10 @@ function ModernTemplate({ cv }) {
           }}>
             {t('cvSections.personalSummary')}
           </h2>
-          <p style={{ fontSize: '1rem', lineHeight: 1.7 }}>{cv.personalInfo.summary}</p>
+          <RichTextDisplay 
+            content={cv.personalInfo.summary} 
+            style={{ fontSize: '1rem', lineHeight: 1.7 }}
+          />
         </section>
       )}
 
@@ -162,14 +166,14 @@ function ModernTemplate({ cv }) {
                   </span>
                 </div>
                 {exp.description && (
-                  <div style={{ 
-                    fontSize: '0.95rem', 
-                    lineHeight: 1.6,
-                    whiteSpace: 'pre-line',
-                    marginLeft: '0'
-                  }}>
-                    {exp.description}
-                  </div>
+                  <RichTextDisplay 
+                    content={exp.description}
+                    style={{ 
+                      fontSize: '0.95rem', 
+                      lineHeight: 1.6,
+                      marginLeft: '0'
+                    }}
+                  />
                 )}
               </div>
             )
@@ -213,13 +217,13 @@ function ModernTemplate({ cv }) {
                   </span>
                 </div>
                 {edu.description && (
-                  <div style={{ 
-                    fontSize: '0.95rem', 
-                    lineHeight: 1.6,
-                    whiteSpace: 'pre-line'
-                  }}>
-                    {edu.description}
-                  </div>
+                  <RichTextDisplay 
+                    content={edu.description}
+                    style={{ 
+                      fontSize: '0.95rem', 
+                      lineHeight: 1.6
+                    }}
+                  />
                 )}
               </div>
             )
@@ -330,14 +334,14 @@ function ModernTemplate({ cv }) {
                   </span>
                 </div>
                 {project.description && (
-                  <div style={{ 
-                    fontSize: '0.95rem', 
-                    lineHeight: 1.6,
-                    whiteSpace: 'pre-line',
-                    marginBottom: '0.5rem'
-                  }}>
-                    {project.description}
-                  </div>
+                  <RichTextDisplay 
+                    content={project.description}
+                    style={{ 
+                      fontSize: '0.95rem', 
+                      lineHeight: 1.6,
+                      marginBottom: '0.5rem'
+                    }}
+                  />
                 )}
                 {project.url && (
                   <p style={{ margin: 0, fontSize: '0.9rem', color: cv.theme.primaryColor }}>
