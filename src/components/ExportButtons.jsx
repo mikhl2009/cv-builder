@@ -7,7 +7,7 @@ import { useCV } from '../context/CVContext'
 import ATSCompatiblePDFGenerator from './ATSCompatiblePDFGenerator'
 
 function ExportButtons() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { cv } = useCV()
   const [isExporting, setIsExporting] = useState(false)
 
@@ -98,7 +98,8 @@ function ExportButtons() {
   const exportToATSPDF = async () => {
     setIsExporting(true)
     try {
-      const pdfGenerator = new ATSCompatiblePDFGenerator()
+      const currentLanguage = i18n.language || 'sv'
+      const pdfGenerator = new ATSCompatiblePDFGenerator(currentLanguage)
       const doc = pdfGenerator.generatePDF(cv)
       const filename = `${cv.personalInfo.fullName || 'CV'}_ATS.pdf`
       doc.save(filename)
@@ -149,7 +150,7 @@ function ExportButtons() {
         disabled={isExporting}
       >
         <Download size={16} />
-        {isExporting ? t('buttons.exporting') : t('buttons.exportPDF')} (Visuell)
+        {isExporting ? t('buttons.exporting') : t('buttons.exportPDFVisual')}
       </button>
       
       <button 
@@ -158,7 +159,7 @@ function ExportButtons() {
         disabled={isExporting}
       >
         <FileText size={16} />
-        {isExporting ? 'Skapar ATS PDF...' : 'ATS-kompatibel PDF'}
+        {isExporting ? t('buttons.exportingATS') : t('buttons.exportATSPDF')}
       </button>
       
       <button 

@@ -2,13 +2,34 @@ import jsPDF from 'jspdf'
 import 'jspdf-autotable'
 
 class ATSCompatiblePDFGenerator {
-  constructor() {
+  constructor(language = 'sv') {
     this.doc = null
     this.currentY = 20
     this.pageWidth = 210 // A4 width in mm
     this.pageHeight = 297 // A4 height in mm
     this.margin = 20
     this.contentWidth = this.pageWidth - (this.margin * 2)
+    this.language = language
+    
+    // Section titles in different languages
+    this.sectionTitles = {
+      sv: {
+        professionalSummary: 'PROFESSIONELL SAMMANFATTNING',
+        workExperience: 'ARBETSLIVSERFARENHET', 
+        education: 'UTBILDNING',
+        skills: 'FÄRDIGHETER',
+        projects: 'PROJEKT',
+        certifications: 'CERTIFIERINGAR'
+      },
+      en: {
+        professionalSummary: 'PROFESSIONAL SUMMARY',
+        workExperience: 'WORK EXPERIENCE',
+        education: 'EDUCATION', 
+        skills: 'SKILLS',
+        projects: 'PROJECTS',
+        certifications: 'CERTIFICATIONS'
+      }
+    }
   }
 
   generatePDF(cv) {
@@ -23,7 +44,7 @@ class ATSCompatiblePDFGenerator {
     
     // Professional Summary
     if (cv.personalInfo.summary) {
-      this.addSection('PROFESSIONAL SUMMARY', cv.personalInfo.summary)
+      this.addSection(this.sectionTitles[this.language].professionalSummary, cv.personalInfo.summary)
     }
     
     // Work Experience
@@ -127,7 +148,7 @@ class ATSCompatiblePDFGenerator {
     
     this.doc.setFontSize(14)
     this.doc.setFont('helvetica', 'bold')
-    this.doc.text('WORK EXPERIENCE', this.margin, this.currentY)
+    this.doc.text(this.sectionTitles[this.language].workExperience, this.margin, this.currentY)
     this.currentY += 10
     
     experiences.forEach((exp, index) => {
@@ -174,7 +195,7 @@ class ATSCompatiblePDFGenerator {
     
     this.doc.setFontSize(14)
     this.doc.setFont('helvetica', 'bold')
-    this.doc.text('EDUCATION', this.margin, this.currentY)
+    this.doc.text(this.sectionTitles[this.language].education, this.margin, this.currentY)
     this.currentY += 10
     
     education.forEach(edu => {
@@ -221,7 +242,7 @@ class ATSCompatiblePDFGenerator {
     
     this.doc.setFontSize(14)
     this.doc.setFont('helvetica', 'bold')
-    this.doc.text('SKILLS', this.margin, this.currentY)
+    this.doc.text(this.sectionTitles[this.language].skills, this.margin, this.currentY)
     this.currentY += 10
     
     // Group skills by category for better ATS parsing
@@ -262,7 +283,7 @@ class ATSCompatiblePDFGenerator {
     
     this.doc.setFontSize(14)
     this.doc.setFont('helvetica', 'bold')
-    this.doc.text('PROJECTS', this.margin, this.currentY)
+    this.doc.text(this.sectionTitles[this.language].projects, this.margin, this.currentY)
     this.currentY += 10
     
     projects.forEach(project => {
@@ -317,7 +338,7 @@ class ATSCompatiblePDFGenerator {
     
     this.doc.setFontSize(14)
     this.doc.setFont('helvetica', 'bold')
-    this.doc.text('CERTIFICATIONS', this.margin, this.currentY)
+    this.doc.text(this.sectionTitles[this.language].certifications, this.margin, this.currentY)
     this.currentY += 10
     
     certifications.forEach(cert => {

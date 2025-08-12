@@ -23,6 +23,9 @@ const swedishTranslations = {
   // Buttons
   buttons: {
     exportPDF: 'Exportera PDF',
+    exportPDFVisual: 'Exportera PDF (Visuell)',
+    exportATSPDF: 'ATS-kompatibel PDF',
+    exportingATS: 'Skapar ATS PDF...',
     exportHTML: 'Exportera HTML',
     saveData: 'Spara Data',
     addExperience: 'Lägg till Erfarenhet',
@@ -281,6 +284,9 @@ const englishTranslations = {
   // Buttons
   buttons: {
     exportPDF: 'Export PDF',
+    exportPDFVisual: 'Export PDF (Visual)',
+    exportATSPDF: 'ATS-Compatible PDF',
+    exportingATS: 'Creating ATS PDF...',
     exportHTML: 'Export HTML',
     saveData: 'Save Data',
     addExperience: 'Add Experience',
