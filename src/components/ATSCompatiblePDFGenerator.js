@@ -14,7 +14,7 @@ class ATSCompatiblePDFGenerator {
     // Section titles in different languages
     this.sectionTitles = {
       sv: {
-        professionalSummary: 'PROFESSIONELL SAMMANFATTNING',
+        professionalSummary: 'Profil',
         workExperience: 'ARBETSLIVSERFARENHET', 
         education: 'UTBILDNING',
         skills: 'FÄRDIGHETER',
@@ -28,6 +28,26 @@ class ATSCompatiblePDFGenerator {
         skills: 'SKILLS',
         projects: 'PROJECTS',
         certifications: 'CERTIFICATIONS'
+      }
+    }
+    
+    // Contact info labels in different languages
+    this.contactLabels = {
+      sv: {
+        email: 'E-post',
+        phone: 'Telefon',
+        location: 'Plats',
+        website: 'Webbsida',
+        linkedin: 'LinkedIn',
+        github: 'GitHub'
+      },
+      en: {
+        email: 'Email',
+        phone: 'Phone', 
+        location: 'Location',
+        website: 'Website',
+        linkedin: 'LinkedIn',
+        github: 'GitHub'
       }
     }
   }
@@ -86,13 +106,55 @@ class ATSCompatiblePDFGenerator {
     this.doc.setFontSize(11)
     this.doc.setFont('helvetica', 'normal')
     
+    const labels = this.contactLabels[this.language]
     const contactInfo = []
-    if (personalInfo.email) contactInfo.push(`Email: ${personalInfo.email}`)
-    if (personalInfo.phone) contactInfo.push(`Phone: ${personalInfo.phone}`)
-    if (personalInfo.location) contactInfo.push(`Location: ${personalInfo.location}`)
-    if (personalInfo.website) contactInfo.push(`Website: ${personalInfo.website}`)
-    if (personalInfo.linkedin) contactInfo.push(`LinkedIn: ${personalInfo.linkedin}`)
-    if (personalInfo.github) contactInfo.push(`GitHub: ${personalInfo.github}`)
+    
+    if (personalInfo.email) {
+      contactInfo.push({
+        text: `${labels.email}: ${personalInfo.email}`,
+        type: 'email',
+        value: personalInfo.email
+      })
+    }
+    if (personalInfo.phone) {
+      contactInfo.push({
+        text: `${labels.phone}: ${personalInfo.phone}`,
+        type: 'text'
+      })
+    }
+    if (personalInfo.location) {
+      contactInfo.push({
+        text: `${labels.location}: ${personalInfo.location}`,
+        type: 'text'
+      })
+    }
+    if (personalInfo.website) {
+      const shortUrl = this.truncateUrl(personalInfo.website)
+      contactInfo.push({
+        text: `${labels.website}: ${shortUrl}`,
+        type: 'url',
+        value: personalInfo.website,
+        displayUrl: shortUrl
+      })
+    }
+    if (personalInfo.linkedin) {
+      const shortLinkedin = this.truncateUrl(personalInfo.linkedin)
+      contactInfo.push({
+        text: `${labels.linkedin}: ${shortLinkedin}`,
+        type: 'url',
+        value: personalInfo.linkedin,
+        displayUrl: shortLinkedin
+      })
+    }
+    if (personalInfo.github) {
+      const shortGithub = this.truncateUrl(personalInfo.github)
+      contactInfo.push({
+        text: `${labels.github}: ${shortGithub}`,
+        type: 'url',
+        value: personalInfo.github,
+        displayUrl: shortGithub
+      })
+    }
     
     // Display contact info in two columns for better ATS parsing
     let colIndex = 0
@@ -100,9 +162,39 @@ class ATSCompatiblePDFGenerator {
     
     contactInfo.forEach((info, index) => {
       const x = colIndex === 0 ? this.margin : this.margin + (this.contentWidth / 2)
-      this.doc.text(info, x, lineY)
       
-      if (colIndex === 1) {
+      // Check if text fits in column width, if not use single column
+      const columnWidth = this.contentWidth / 2 - 5
+      const textWidth = this.doc.getTextWidth(info.text)
+      
+      if (textWidth > columnWidth && colIndex === 1) {
+        // Move to next line if text too long for second column
+        lineY += 5
+        colIndex = 0
+      }
+      
+      const finalX = colIndex === 0 ? this.margin : this.margin + (this.contentWidth / 2)
+      
+      // Add text
+      this.doc.text(info.text, finalX, lineY)
+      
+      // Add clickable link for URLs and emails
+      if (info.type === 'url' || info.type === 'email') {
+        const labelWidth = this.doc.getTextWidth(`${info.text.split(':')[0]}: `)
+        const linkX = finalX + labelWidth
+        const linkWidth = this.doc.getTextWidth(info.displayUrl || info.value)
+        const linkY = lineY - 3 // Adjust for text baseline
+        
+        if (info.type === 'url') {
+          // Add clickable URL link
+          this.doc.link(linkX, linkY, linkWidth, 5, { url: info.value })
+        } else if (info.type === 'email') {
+          // Add clickable email link
+          this.doc.link(linkX, linkY, linkWidth, 5, { url: `mailto:${info.value}` })
+        }
+      }
+      
+      if (colIndex === 1 || textWidth > columnWidth) {
         lineY += 5
         colIndex = 0
       } else {
@@ -302,9 +394,24 @@ class ATSCompatiblePDFGenerator {
       this.doc.setFont('helvetica', 'normal')
       const dateRange = this.formatDateRange(project.startDate, project.endDate)
       let projectInfo = dateRange
-      if (project.url) projectInfo += ` | ${project.url}`
       
-      this.doc.text(projectInfo, this.margin, this.currentY)
+      if (project.url) {
+        const shortUrl = this.truncateUrl(project.url)
+        projectInfo += ` | ${shortUrl}`
+        
+        this.doc.text(projectInfo, this.margin, this.currentY)
+        
+        // Add clickable link for the URL part
+        const prefixWidth = this.doc.getTextWidth(`${dateRange} | `)
+        const linkX = this.margin + prefixWidth
+        const linkWidth = this.doc.getTextWidth(shortUrl)
+        const linkY = this.currentY - 3
+        
+        this.doc.link(linkX, linkY, linkWidth, 5, { url: project.url })
+      } else {
+        this.doc.text(projectInfo, this.margin, this.currentY)
+      }
+      
       this.currentY += 6
       
       // Technologies
@@ -356,11 +463,28 @@ class ATSCompatiblePDFGenerator {
       let certInfo = ''
       if (cert.issuer) certInfo += cert.issuer
       if (cert.date) certInfo += ` | ${this.formatDate(cert.date)}`
-      if (cert.url) certInfo += ` | ${cert.url}`
       
-      if (certInfo) {
-        this.doc.text(certInfo, this.margin, this.currentY)
-        this.currentY += 5
+      if (cert.url) {
+        const shortUrl = this.truncateUrl(cert.url)
+        certInfo += ` | ${shortUrl}`
+        
+        if (certInfo) {
+          this.doc.text(certInfo, this.margin, this.currentY)
+          
+          // Add clickable link for the URL part
+          const prefixWidth = this.doc.getTextWidth(certInfo.replace(` | ${shortUrl}`, ' | '))
+          const linkX = this.margin + prefixWidth
+          const linkWidth = this.doc.getTextWidth(shortUrl)
+          const linkY = this.currentY - 3
+          
+          this.doc.link(linkX, linkY, linkWidth, 5, { url: cert.url })
+          this.currentY += 5
+        }
+      } else {
+        if (certInfo) {
+          this.doc.text(certInfo, this.margin, this.currentY)
+          this.currentY += 5
+        }
       }
       
       this.currentY += 3
@@ -378,6 +502,37 @@ class ATSCompatiblePDFGenerator {
     this.doc.setLineWidth(0.5)
     this.doc.line(this.margin, this.currentY, this.pageWidth - this.margin, this.currentY)
     this.currentY += 5
+  }
+
+  truncateUrl(url) {
+    if (!url) return ''
+    
+    // Remove protocol for shorter display
+    let cleanUrl = url.replace(/^https?:\/\//, '')
+    
+    // If still too long, truncate intelligently
+    if (cleanUrl.length > 35) {
+      // For LinkedIn, show the profile part
+      if (cleanUrl.includes('linkedin.com/in/')) {
+        const profilePart = cleanUrl.match(/linkedin\.com\/in\/([^\/]+)/);
+        if (profilePart) {
+          return `linkedin.com/in/${profilePart[1]}`;
+        }
+      }
+      
+      // For GitHub, show the username part
+      if (cleanUrl.includes('github.com/')) {
+        const userPart = cleanUrl.match(/github\.com\/([^\/]+)/);
+        if (userPart) {
+          return `github.com/${userPart[1]}`;
+        }
+      }
+      
+      // For other URLs, truncate from the end
+      return cleanUrl.substring(0, 32) + '...';
+    }
+    
+    return cleanUrl;
   }
 
   stripHTML(html) {

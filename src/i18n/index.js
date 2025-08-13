@@ -66,7 +66,7 @@ const swedishTranslations = {
     website: 'Webbsida',
     linkedin: 'LinkedIn',
     github: 'GitHub',
-    summary: 'Professionell Sammanfattning',
+    summary: 'Profil',
     summaryPlaceholder: 'Skriv en kort sammanfattning av din professionella bakgrund och viktiga styrkor...',
     placeholders: {
       fullName: 'Anna Andersson',
@@ -211,7 +211,7 @@ const swedishTranslations = {
   
   // CV Sections (for templates)
   cvSections: {
-    personalSummary: 'Professionell Sammanfattning',
+    personalSummary: 'Profil',
     workExperience: 'Arbetslivserfarenhet',
     education: 'Utbildning',
     skills: 'Färdigheter',
